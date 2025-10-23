@@ -1,27 +1,24 @@
 {
   "name": "med-queue-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A React + Node.js application ready for Render deployment",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/server.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm install && npm run build"
+  },
   "dependencies": {
-    "axios": "^1.12.2",
-    "concurrently": "^9.2.1"
+    "express": "^4.18.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
   },
-  "scripts": {
-    "start": "cd server && npm start",
-    "build": "cd client && npm run build",
-    "client:build": "cd client && npm run build",
-    "server:start": "cd server && npm start",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "server": "cd server && npm run dev",
-    "client": "cd client && npm start",
-    "kill-ports": "kill-ports.bat",
-    "dev:clean": "npm run kill-ports && npm run dev",
-    "create-admin": "cd server && npm run create-admin",
-    "build:deploy": "node scripts/build-and-deploy.js",
-    "deploy": "npm run build && npm start",
-    "build:production": "npm install && cd client && npm install && npm run build"
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

@@ -1,119 +1,37 @@
 import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import helmet from 'helmet';
-import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Server } from 'socket.io';
-import doctorRoutes from './routes/doctorRoutes.js';
-import appointmentRoutes from './routes/appointmentRoutes.js';
-import complaintRoutes from './routes/complaintRoutes.js';
-import serviceAppointmentRoutes from './routes/serviceAppointmentRoutes.js';
-import authRoutes from './routes/authRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
 
-// Load environment variables
-dotenv.config();
-
-// Database configuration
-import connectDB from './config/db.js';
-
+// Create Express app
 const app = express();
-const server = http.createServer(app);
-const PORT = process.env.PORT || 5014; // Use PORT from environment or default to 5014
+const PORT = process.env.PORT || 3001;
 
-// Connect to MongoDB
-connectDB();
-
-// Security middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "http://localhost:3000", "http://localhost:3006", "http://localhost:5014"],
-      imgSrc: ["'self'", "data:", "https:"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      connectSrc: [
-        "'self'",
-        "https:",
-        "http://localhost:3000",
-        "http://localhost:3006",
-        "http://localhost:5014",
-        "http://localhost:5013",
-        "ws://localhost:5014"
-      ],
-      frameSrc: ["'self'"]
-    }
-  },
-  // Only enable HSTS in production
-  hsts: process.env.NODE_ENV === 'production'
-}));
-
-// Add CORS middleware before all routes as specified in instructions
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3006', 'http://localhost:5014'], credentials: true }));
-
-// Add express.json() as specified in instructions
+// Middleware to parse JSON
 app.use(express.json());
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/queue/doctors', doctorRoutes);
-app.use('/api/queue/appointments', appointmentRoutes);
-app.use('/api/queue/complaints', complaintRoutes);
-app.use('/api/queue/service-appointments', serviceAppointmentRoutes);
+// API endpoint that returns "Hello World"
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Hello World' });
+});
 
-// Serve static files from the React app build directory (only in production)
+// Serve static files from the React app build directory in production
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === 'production') {
-  const __buildPath = path.join(__dirname, '../client/build');
-  app.use(express.static(__buildPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__buildPath, 'index.html'));
+  // Set build path to client build directory
+  const buildPath = path.join(__dirname, '../client/build');
+  
+  // Serve static files
+  app.use(express.static(buildPath));
+  
+  // For any other route, serve index.html (for client-side routing)
+  app.use((req, res) => {
+    res.sendFile(path.resolve(buildPath, 'index.html'));
   });
 }
 
-// Global error handling middleware
-app.use((err, req, res, next) => {
-  res.status(500).json({ 
-    message: 'Something went wrong!',
-    ...(process.env.NODE_ENV !== 'production' && { error: err.message })
-  });
-});
-
-// Socket.IO setup with CORS
-const io = new Server(server, {
-  cors: {
-    origin: ['http://localhost:3000', 'http://localhost:3006', 'http://localhost:5014'],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Authorization"]
-  }
-});
-
-// Socket.IO connection handling
-io.on('connection', (socket) => {
-  socket.on('disconnect', () => {
-  });
-});
-
-// Emit event when a new appointment is created
-const emitNewAppointment = (appointment) => {
-  io.emit('newAppointment', appointment);
-};
-
-// Make emitNewAppointment available globally
-global.emitNewAppointment = emitNewAppointment;
-
 // Start server
-console.log('PORT from environment:', process.env.PORT);
-console.log('Using PORT:', PORT);
-server.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
