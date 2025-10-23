@@ -6,7 +6,6 @@ import { Telegraf } from 'telegraf';
 
 // Create Express app
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -22,7 +21,7 @@ let bot;
 if (process.env.BOT_TOKEN) {
   try {
     bot = new Telegraf(process.env.BOT_TOKEN);
-    // Basic bot command
+    // Basic bot commands
     bot.start((ctx) => ctx.reply('Welcome to our app bot!'));
     bot.help((ctx) => ctx.reply('Send me a sticker'));
     bot.on('sticker', (ctx) => ctx.reply('👍'));
@@ -52,7 +51,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(buildPath));
   
   // For any other route, serve index.html (for client-side routing)
-  app.use((req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(path.resolve(buildPath, 'index.html'));
   });
 }
@@ -71,7 +70,8 @@ process.once('SIGTERM', () => {
   process.exit(0);
 });
 
-// Start server
+// Start server - Use PORT from environment or default to 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
