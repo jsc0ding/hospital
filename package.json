@@ -1,7 +1,7 @@
 {
   "name": "med-queue-react",
   "version": "1.0.0",
-  "description": "A React + Node.js application ready for Render deployment",
+  "description": "A React + Node.js application ready for Render deployment with Telegram bot and MongoDB",
   "main": "server/server.js",
   "type": "module",
   "scripts": {
@@ -9,16 +9,19 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server/server.js",
     "client": "cd client && npm start",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build",
+    "render-build": "npm install && cd client && npm install && npm run build"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "telegraf": "^4.12.2"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   }
 }

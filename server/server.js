@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
+import { Telegraf } from 'telegraf';
 
 // Create Express app
 const app = express();
@@ -8,6 +10,30 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// MongoDB connection
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/myapp';
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Initialize Telegram bot if token is provided
+let bot;
+if (process.env.BOT_TOKEN) {
+  try {
+    bot = new Telegraf(process.env.BOT_TOKEN);
+    // Basic bot command
+    bot.start((ctx) => ctx.reply('Welcome to our app bot!'));
+    bot.help((ctx) => ctx.reply('Send me a sticker'));
+    bot.on('sticker', (ctx) => ctx.reply('👍'));
+    
+    // Launch bot
+    bot.launch();
+    console.log('Telegram bot started successfully');
+  } catch (error) {
+    console.error('Failed to initialize Telegram bot:', error);
+  }
+}
 
 // API endpoint that returns "Hello World"
 app.get('/api/test', (req, res) => {
@@ -30,6 +56,20 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(buildPath, 'index.html'));
   });
 }
+
+// Graceful shutdown
+process.once('SIGINT', () => {
+  if (bot) {
+    bot.stop('SIGINT');
+  }
+  process.exit(0);
+});
+process.once('SIGTERM', () => {
+  if (bot) {
+    bot.stop('SIGTERM');
+  }
+  process.exit(0);
+});
 
 // Start server
 app.listen(PORT, () => {
