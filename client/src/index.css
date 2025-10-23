@@ -1,0 +1,69 @@
+/* Global CSS Variables and Base Styles */
+:root {
+  /* Blue and White Color Palette */
+  --blue-primary: #1e90ff;        /* Dodger Blue */
+  --blue-dark: #00008b;           /* Dark Blue */
+  --blue-light: #87cefa;          /* Light Sky Blue */
+  --sky-blue-primary: #1e90ff;    /* Sky Blue for buttons */
+  --deep-blue-dark: #00008b;      /* Deep Blue for dark text */
+  --white: #ffffff;               /* Pure White */
+  --blue-text: #00008b;           /* Dark Blue for text */
+  --blue-border: #1e90ff;         /* Dodger Blue for borders */
+  --accent-blue: #1e90ff;         /* Accent blue for buttons */
+  
+  /* Gradients using only blue and white */
+  --gradient-primary: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--blue-light), var(--blue-primary));
+  --gradient-text: linear-gradient(to right, var(--blue-primary), var(--blue-dark));
+  --gradient-buttons: linear-gradient(135deg, var(--sky-blue-primary), var(--deep-blue-dark));
+  
+  /* Layout */
+  --shadow: 0 4px 20px rgba(30, 144, 255, 0.2);
+  --navbar-height: 70px;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 24px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Legacy Variables for Compatibility */
+  --background-color: var(--white);
+  --light-blue: var(--blue-light);
+  --light-green: rgba(30, 144, 255, 0.1);
+  --success-color: var(--blue-primary);
+  --primary-color: var(--blue-primary);
+  --warning-color: var(--blue-light);
+  --danger-color: var(--blue-primary);
+  --text-color: var(--blue-text);
+  --secondary-color: var(--blue-text);
+  --text-primary: var(--blue-text);
+  --text-secondary: rgba(0, 0, 139, 0.8);
+  --text-tertiary: rgba(0, 0, 139, 0.6);
+  --border-color: rgba(30, 144, 255, 0.3);
+  --error-color: var(--blue-primary);
+  --error-hover: var(--blue-primary);
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--blue-text);
+  background-color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

@@ -1,0 +1,275 @@
+/* Import organized CSS modules */
+@import './uslublar/modern.css';
+@import './uslublar/new-design.css';
+@import './uslublar/layout.css';
+@import './uslublar/components.css';
+@import './uslublar/contact-section-updated.css';
+@import './uslublar/home-redesigned.css';
+@import './uslublar/white-blue-theme.css';
+@import './uslublar/navbar-no-hover.css'; /* Import navbar hover removal styles */
+/* Slick carousel styles */
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+/* Global improvements for better visual appeal */
+:root {
+  --transition-all: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --shadow-light: 0 4px 12px rgba(30, 144, 255, 0.1);
+  --shadow-medium: 0 8px 24px rgba(30, 144, 255, 0.15);
+  --shadow-heavy: 0 12px 36px rgba(30, 144, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--blue-text);
+  background-color: var(--white);
+  overflow-x: hidden;
+}
+
+/* Enhanced container for better spacing */
+.container {
+  width: min(1400px, 92%);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: min(1600px, 90%);
+  }
+}
+
+/* Improved page content spacing */
+.page-content {
+  padding-top: var(--navbar-height); /* Remove extra padding */
+  min-height: calc(100vh - var(--navbar-height));
+  margin-top: 0; /* Ensure no top margin */
+}
+
+/* Enhanced section styling */
+section {
+  padding: 3rem 0;
+}
+
+/* Improved section titles with better visual hierarchy */
+.section-title {
+  text-align: center;
+  color: var(--blue-primary);
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--blue-text);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
+
+/* Enhanced card styling with better depth */
+.card {
+  background: var(--white);
+  border: 1px solid rgba(30, 144, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+  border-color: rgba(30, 144, 255, 0.3);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Enhanced button styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-xl);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--blue-primary);
+  color: var(--blue-primary);
+}
+
+.btn-outline:hover {
+  background: var(--gradient-primary);
+  color: var(--white);
+  border-color: var(--blue-dark);
+}
+
+/* Enhanced form controls */
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(30, 144, 255, 0.3);
+  border-radius: var(--border-radius);
+  background: var(--white);
+  color: var(--blue-text);
+  font-size: 1rem;
+  transition: var(--transition-all);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--blue-primary);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
+}
+
+/* Enhanced grid layouts */
+.grid-layout {
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Enhanced hero section */
+.hero {
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+  color: var(--white);
+  padding: 6rem 1rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 0; /* Remove margin that causes space */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(30, 144, 255, 0.1);
+  color: var(--white);
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  color: var(--white);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.hero-buttons .btn {
+  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1rem;
+    margin-top: calc(-1 * var(--navbar-height) - 10px);
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .card {
+    border-radius: var(--border-radius);
+  }
+}

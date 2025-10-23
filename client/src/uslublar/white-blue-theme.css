@@ -1,0 +1,197 @@
+body {
+  background-color: white;
+  color: #00008b;
+}
+
+.page-content {
+  background-color: white;
+}
+
+.section-modern {
+  background-color: white;
+}
+
+.card {
+  background: white;
+  border: 1px solid #1e90ff;
+  color: #00008b;
+}
+
+.card-title {
+  color: #1e90ff;
+}
+
+.card-text {
+  color: #00008b;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1e90ff, #00008b);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #00008b, #1e90ff);
+  color: white;
+}
+
+.btn-outline-primary {
+  border: 2px solid #1e90ff;
+  color: #1e90ff;
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, #1e90ff, #00008b);
+  color: white;
+}
+
+a {
+  color: #1e90ff;
+}
+
+a:hover {
+  color: #00008b;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #00008b;
+}
+
+.text-primary {
+  color: #1e90ff !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.form-control {
+  border: 1px solid #1e90ff;
+  color: #00008b;
+}
+
+.form-control:focus {
+  border-color: #00008b;
+  box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
+}
+
+.table th {
+  color: #00008b;
+}
+
+.table td {
+  color: #00008b;
+}
+
+.alert-primary {
+  background-color: rgba(30, 144, 255, 0.1);
+  border-color: #1e90ff;
+  color: #00008b;
+}
+
+.badge-primary {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.progress-bar {
+  background-color: #1e90ff;
+}
+
+.list-group-item {
+  color: #00008b;
+  border: 1px solid #1e90ff;
+}
+
+.modal-content {
+  background-color: white;
+  color: #00008b;
+}
+
+.modal-header {
+  border-bottom: 1px solid #1e90ff;
+}
+
+.modal-footer {
+  border-top: 1px solid #1e90ff;
+}
+
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid #1e90ff;
+}
+
+.navbar-brand {
+  color: #1e90ff;
+}
+
+.nav-link {
+  color: #00008b;
+}
+
+.nav-link:hover {
+  color: #1e90ff;
+}
+
+.nav-link.active {
+  color: #1e90ff;
+  font-weight: bold;
+}
+
+.footer-modern {
+  background-color: white;
+  border-top: 1px solid #1e90ff;
+  color: #00008b;
+}
+
+.testimonials-section {
+  background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%) !important;
+  color: white !important;
+}
+
+.testimonials-section .heading-modern {
+  color: white !important;
+}
+
+.testimonials-section .subheading-modern {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+.testimonial-card:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-5px);
+}
+
+.testimonial-card .card-title {
+  color: white !important;
+}
+
+.testimonial-card .card-text {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: white;
+  }
+  
+  .card {
+    border: 1px solid #1e90ff;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #1e90ff, #00008b);
+  }
+  
+  .testimonials-section {
+    background: linear-gradient(135deg, #4BB543 0%, #27ae60 100%) !important;
+  }
+}

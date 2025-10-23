@@ -1,0 +1,47 @@
+{
+  "name": "med-queue-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "axios": "^1.12.2",
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.31.0",
+    "rimraf": "^6.0.1",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1",
+    "web-vitals": "^5.1.0",
+    "workbox-cacheable-response": "^7.3.0",
+    "workbox-google-analytics": "^7.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "cross-env CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  }
+}
