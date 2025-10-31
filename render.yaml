@@ -1,11 +1,19 @@
 services:
   - type: web
-    name: hospital-back
+    name: shifoxona-app
     env: node
     buildCommand: npm run build
-    startCommand: cd server && npm start
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5012
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHAT_ID
+        sync: false
+      - key: ADMIN_CODE
+        sync: false
