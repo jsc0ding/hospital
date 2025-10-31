@@ -11,9 +11,9 @@ try {
   console.log('📦 Installing client dependencies...');
   execSync('npm install', { cwd: path.join(__dirname, '../client'), stdio: 'inherit' });
   
-  // Build React frontend
+  // Build React frontend directly with react-scripts to avoid recursive calls
   console.log('🏗️ Building React frontend...');
-  execSync('npm run build', { cwd: path.join(__dirname, '../client'), stdio: 'inherit' });
+  execSync('npx react-scripts build', { cwd: path.join(__dirname, '../client'), stdio: 'inherit' });
   
   console.log('✅ Build process completed successfully!');
 } catch (error) {
