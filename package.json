@@ -1,0 +1,33 @@
+{
+  "name": "med-queue-react",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "concurrently": "^9.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "scripts": {
+    "start": "cd server && npm start",
+    "build": "cd client && npm install && npm run build",
+    "client:build": "cd client && npm run build",
+    "server:start": "cd server && npm start",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "kill-ports": "kill-ports.bat",
+    "dev:clean": "npm run kill-ports && npm run dev",
+    "create-admin": "cd server && npm run create-admin",
+    "build:deploy": "npm run build && cd server && npm start",
+    "deploy": "npm run build && npm start",
+    "build:production": "npm install && cd client && npm install && npm run build",
+    "postinstall": "npm run build"
+  }
+}
